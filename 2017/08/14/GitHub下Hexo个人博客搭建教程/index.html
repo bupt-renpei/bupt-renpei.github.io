@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>GitHub下Hexo个人博客搭建教程 | Lean In</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="generator" content="Hexo 4.1.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">GitHub下Hexo个人博客搭建教程</h1><a id="logo" href="/.">Lean In</a><p class="description"></p></div><div id="nav-menu"><a href="/topic/"><i class="fa fa-map-marker"> Topic</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/reading/"><i class="fa fa-university"> Reading</i></a><a href="/travel/"><i class="fa fa-plane"> Travel</i></a><a href="/publication/"><i class="fa fa-file-text-o"> Publication</i></a><a href="/about/"><i class="fa fa-user"> About</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">GitHub下Hexo个人博客搭建教程</h1><div class="post-meta">Aug 14, 2017<span> | </span><span class="category"><a href="/categories/Hexo/">Hexo</a></span></div><a class="disqus-comment-count" data-disqus-identifier="2017/08/14/GitHub下Hexo个人博客搭建教程/" href="/2017/08/14/GitHub%E4%B8%8BHexo%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/#disqus_thread"></a><div class="post-content"><a id="more"></a>
+
+<p>Reference <a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">NexT</a> <a href="http://iissnan.com/progit/" target="_blank" rel="noopener">Git</a> <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">Hexo</a><br>Related OS <a href="https://www.ubuntu.com/download/alternative-downloads" target="_blank" rel="noopener">ubuntu-16.04.2-desktop-amd64</a></p>
+<h2 id="Prerequest"><a href="#Prerequest" class="headerlink" title="Prerequest"></a>Prerequest</h2><p>ubuntu 16.04 以下推荐安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nautilus-open-terminal</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt dist-upgrade</span><br></pre></td></tr></table></figure>
+
+<h2 id="Git"><a href="#Git" class="headerlink" title="Git"></a>Git</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br><span class="line">sudo apt install git</span><br></pre></td></tr></table></figure>
+
+<h2 id="nvm"><a href="#nvm" class="headerlink" title="nvm"></a>nvm</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install build-essential libssl-dev</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;creationix&#x2F;nvm&#x2F;v0.32.1&#x2F;install.sh | bash</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;.nvm</span><br><span class="line">ls</span><br><span class="line">command -v nvm</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/nvmls.png" alt=""></p>
+<p>在当前terminal下使用命令<code>command -v nvm</code>并不会输出任何信息，需要打开一个新的terminal，<code>command -v nvm</code>命令会输出<code>nvm</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">command -v nvm</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/nvmlsCMD.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install stable</span><br></pre></td></tr></table></figure>
+
+<h2 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install npm -y</span><br><span class="line">npm --version</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/npmV.png" alt=""></p>
+<h2 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/hexoInstall.png" alt=""></p>
+<p>安装完成之后，可以通过<code>help</code>命令查看Hexo的帮助信息</p>
+<h2 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;.ssh</span><br></pre></td></tr></table></figure>
+
+<p>若提示 <code>bash: cd: /home/renpei/.ssh: No such file or directory</code><br>则执行指令 <code>ssh-keygen -t rsa -C &quot;renpei@bupt.edu.cn&quot;</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;.ssh</span><br><span class="line">ls -sh</span><br><span class="line">cat id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/catSSH.png" alt=""></p>
+<p>之后将cat读取到的结果保存在GitHub账户settings中的 <code>SSH and GPG keys</code></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/GitHubSSH.png" alt=""></p>
+<p>之后我们可以通过 <code>ssh -T git@github.com</code> 命令来测试本地主机与GitHub是否已经建立连接，其中<a href="mailto:git@github.com">git@github.com</a>为固定地址，在terminal中交互输入yes之后就可以输出如下信息，那么就意味着我们刚才所创建的连接是成功的，收到了GitHub的反馈信息</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/sshGitHub.png" alt=""></p>
+<p>同时我们可以在GitHub刚刚的设置页面下发现，本来灰色的钥匙状图标也变成了绿色</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/GitHubSSHsucc.png" alt=""></p>
+<p>我们同时还需要进行如下的设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;bupt-renpei&quot;</span><br><span class="line">git config --global user.email &quot;renpei@bupt.edu.cn&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="How-to-use-Hexo"><a href="#How-to-use-Hexo" class="headerlink" title="How to use Hexo ?"></a>How to use Hexo ?</h2><h4 id="Hexo-help"><a href="#Hexo-help" class="headerlink" title="Hexo help"></a>Hexo help</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo help</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/hexoHelp.png" alt=""></p>
+<h4 id="Themes"><a href="#Themes" class="headerlink" title="Themes"></a>Themes</h4><p>命令 <code>hexo init &lt;floderName&gt;</code> 可以创建一个hexo文件夹，除了Hexo自带的主题，我们还可以 <strong>clone</strong> 别的主题。此处以 <strong>maupassant</strong> 主题为例，根据该对应的ThemeHomePage上提供的方法，安装此主题，我们需要进行安装主题、安装渲染器两个步骤：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;tufu9441&#x2F;maupassant-hexo.git themes&#x2F;maupassant</span><br></pre></td></tr></table></figure>
+
+<p>此条语句会将所选择的maupassant主题clone到/floaderName/themes文件夹下，之后我们还需要执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-jade --save</span><br><span class="line">npm install hexo-renderer-sass --save</span><br></pre></td></tr></table></figure>
+
+<p>最后编辑Hexo目录下的 <strong>_config.yml</strong> 文件，将 <strong>theme</strong> 的值改为 <strong>maupassant</strong> ，就可以将对应的theme应用于我们的blog</p>
+<h4 id="newPage"><a href="#newPage" class="headerlink" title="newPage"></a>newPage</h4><p>使用 <code>hexo new &quot;articalName&quot;</code> 来创建一篇日志，此外常用的Hexo命令还会有</p>
+<ul>
+<li>hexo g</li>
+<li>hexo s</li>
+<li>hexo d</li>
+<li>hexo clean</li>
+</ul>
+<h4 id="config-yml"><a href="#config-yml" class="headerlink" title="_config.yml"></a>_config.yml</h4><p>此条语句需要我们在进行deploy之前设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type:git</span><br><span class="line">  repo: https:&#x2F;&#x2F;github.com&#x2F;bupt-renpei&#x2F;bupt-renpei.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+
+<h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><h4 id="hexo-d-gt-Deployer-not-found-git"><a href="#hexo-d-gt-Deployer-not-found-git" class="headerlink" title="hexo d -&gt; Deployer not found: git"></a>hexo d -&gt; Deployer not found: git</h4><p>当使用 <code>hexo d</code> 部署博客到GitHub时，会出现如上图所示的报错信息，解决方法为修改 ** _config.yml** 文件中的 <strong>type:git</strong> ，之后重新执行命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/hexoERR.png" alt=""></p>
+<h2 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h2><h4 id="notepad"><a href="#notepad" class="headerlink" title="notepad++"></a>notepad++</h4><p>install :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:notepadqq-team&#x2F;notepadqq</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install notepadqq</span><br></pre></td></tr></table></figure>
+
+<p>uninstall :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove notepadqq</span><br><span class="line">sudo add-apt-repository --remove ppa:notepadqq-team&#x2F;notepadqq</span><br></pre></td></tr></table></figure>
+
+<h4 id="VSCode"><a href="#VSCode" class="headerlink" title="VSCode"></a>VSCode</h4><p>install :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:ubuntu-desktop&#x2F;ubuntu-make</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install ubuntu-make</span><br><span class="line">umake web visual-studio-code</span><br></pre></td></tr></table></figure>
+
+<p>uninstall :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">umake web visual-studio-code --remove</span><br><span class="line">sudo apt-get remove ubuntu-make</span><br></pre></td></tr></table></figure>
+</div><div class="tags"><a href="/tags/Hexo/">Hexo</a></div><div class="post-nav"><a class="pre" href="/2017/08/15/Ubuntu16-04%E4%B8%8BOpenCV%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">Ubuntu16.04下OpenCV安装教程</a><a class="next" href="/2017/08/14/hello-world/">Hello World</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'http://yoursite.com/2017/08/14/GitHub下Hexo个人博客搭建教程/';
+    this.page.identifier = '2017/08/14/GitHub下Hexo个人博客搭建教程/';
+    this.page.title = 'GitHub下Hexo个人博客搭建教程';
+  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
+url: 'https://disqus.com/next/config.json',
+timeout: 2500,
+type: 'GET',
+success: function(){
+  var d = document;
+  var s = d.createElement('script');
+  s.src = '//renpei## Your disqus_shortname, e.g. username.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', + new Date());
+  (d.head || d.body).appendChild(s);
+  $('.disqus_click_btn').css('display', 'none');
+},
+error: function() {
+  $('.disqus_click_btn').css('display', 'block');
+}
+});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//renpei## Your disqus_shortname, e.g. username.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://renpei## Your disqus_shortname, e.g. username.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CCN/">CCN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Caffe/">Caffe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Chainer/">Chainer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Vision/">Computer Vision</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GitLab/">GitLab</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LaTeX/">LaTeX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NDN/">NDN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/CCN/" style="font-size: 15px;">CCN</a> <a href="/tags/CCNx/" style="font-size: 15px;">CCNx</a> <a href="/tags/Chainer/" style="font-size: 15px;">Chainer</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/Server/" style="font-size: 15px;">Server</a> <a href="/tags/LaTeX/" style="font-size: 15px;">LaTeX</a> <a href="/tags/GitLab/" style="font-size: 15px;">GitLab</a> <a href="/tags/OpenCV/" style="font-size: 15px;">OpenCV</a> <a href="/tags/Computer-Vision/" style="font-size: 15px;">Computer Vision</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/NDN/" style="font-size: 15px;">NDN</a> <a href="/tags/ndnSIM/" style="font-size: 15px;">ndnSIM</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/BUPT/" style="font-size: 15px;">BUPT</a> <a href="/tags/Caffe/" style="font-size: 15px;">Caffe</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">Lean In.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

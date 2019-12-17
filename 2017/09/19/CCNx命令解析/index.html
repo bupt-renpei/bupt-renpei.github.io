@@ -1,0 +1,208 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>CCNx命令解析 | Lean In</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="generator" content="Hexo 4.1.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">CCNx命令解析</h1><a id="logo" href="/.">Lean In</a><p class="description"></p></div><div id="nav-menu"><a href="/topic/"><i class="fa fa-map-marker"> Topic</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/reading/"><i class="fa fa-university"> Reading</i></a><a href="/travel/"><i class="fa fa-plane"> Travel</i></a><a href="/publication/"><i class="fa fa-file-text-o"> Publication</i></a><a href="/about/"><i class="fa fa-user"> About</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">CCNx命令解析</h1><div class="post-meta">Sep 19, 2017<span> | </span><span class="category"><a href="/categories/CCN/">CCN</a></span></div><a class="disqus-comment-count" data-disqus-identifier="2017/09/19/CCNx命令解析/" href="/2017/09/19/CCNx%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90/#disqus_thread"></a><div class="post-content"><a id="more"></a>
+
+<h2 id="ccn-xmltoccnb-amp-ccn-ccnbtoxml"><a href="#ccn-xmltoccnb-amp-ccn-ccnbtoxml" class="headerlink" title="ccn_xmltoccnb &amp; ccn_ccnbtoxml"></a>ccn_xmltoccnb &amp; ccn_ccnbtoxml</h2><p>在XML文件与二进制编码的CCN数据<strong>（ccnb）</strong>之间进行转换</p>
+<ul>
+<li>使用<code>ccn_ccnbtoxml</code>会将<strong>XML</strong>格式显示在标准输出</li>
+<li>使用<code>ccn_xmltoccnb</code>会将<strong>XML</strong>格式转换为<strong>ccnb</strong>数据并保存在当前文件夹下<strong>（/ccnx/bin）</strong></li>
+</ul>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccn_xml1.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccn_xml2.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccn_xml3.png" alt=""></p>
+<h2 id="ccnacl"><a href="#ccnacl" class="headerlink" title="ccnacl"></a>ccnacl</h2><p>显示和修改访问控制列表（ACLs），用于对CCNx命名空间的访问控制</p>
+<h2 id="ccngroup"><a href="#ccngroup" class="headerlink" title="ccngroup"></a>ccngroup</h2><p>显示和修改访问控制组，用于对CCNx命名空间的访问控制</p>
+<h2 id="ccndlogging"><a href="#ccndlogging" class="headerlink" title="ccndlogging"></a>ccndlogging</h2><p>改变运行中ccnd的日志级别，<code>ccndlogging [-T host] ( none | low | co | med | high )</code></p>
+<h2 id="ccndsmoketest"><a href="#ccndsmoketest" class="headerlink" title="ccndsmoketest"></a>ccndsmoketest</h2><p>通过对套接字发送和接收数据，用于对ccnd进行测试</p>
+<h2 id="ccnlibtest"><a href="#ccnlibtest" class="headerlink" title="ccnlibtest"></a>ccnlibtest</h2><p>运行ccnx c库的脚本测试，通过<code>ccn_connect()</code>函数连接到<strong>ccnd</strong>从而处理它的参数</p>
+<h2 id="ccnd"><a href="#ccnd" class="headerlink" title="ccnd"></a>ccnd</h2><p>CCNx的守护程序（后台程序），ccnd通常不会直接执行，而是<strong>ccndstart</strong>运行时调用一个<strong>ccnd</strong>的实例。ccnd的运行通常是无止境的，可以使用<code>ccndsmoketest</code>或者kill来结束或者终止一个ccnd实例。ccnd是一个用于CCNx信息传递和路由的软件，并且需要正常的CCNx协议通信，每台主机需要运行一个ccnd，运行在主机上的应用程序可以通过本地的ccnd与其余相连接的网络进行通信。转发表FIB主要通过ccndc进行配置，ccnd通信通过运行在TCP、UDP之上或者Unix域内套接字（使用域内套接字只能本地通信）的CCNx协议</p>
+<h2 id="ccndc"><a href="#ccndc" class="headerlink" title="ccndc"></a>ccndc</h2><p>ccnd中用于操纵CCNx转发表，其中的基本功能有：</p>
+<ul>
+<li><code>add/renew/del uri (udp|tcp) host [port[flags[mcasttt[]mcastif]]]</code>添加/更新/删除一条目</li>
+<li><code>add/del uri face faceid</code>将某<strong>uri</strong>加入到特定的<strong>face</strong></li>
+</ul>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccndc1.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccndc2.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccndc3.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccndc4.png" alt=""></p>
+<p>Reference -&gt; ccnlibtest</p>
+<h2 id="ccndstart"><a href="#ccndstart" class="headerlink" title="ccndstart"></a>ccndstart</h2><p>后台启动ccnd并且根据配置文件设置转发表<strong>（ccnd.conf）</strong>，可以通过修改<code>ccnd.conf</code>来达到与ccndc同样的目的。如果ccnd已经在运行之中，那么执行ccndstart会关闭现有的ccnd并且重新启动，任何通过ccndc手动配置的转发表都需要重新配置执行。ccnd的<strong>cache size</strong>、<strong>debug logging</strong>、<strong>port number</strong>值都能在<code>ccnx/ccndrc</code>中进行设置，这些东西在启动时会被查看。使用<strong><a href="http://localhost:9695" target="_blank" rel="noopener">http://localhost:9695</a></strong>来查看ccnd的运行状态,<strong>CCND_PRELOAD</strong>是ccnd在启动前预先加载到ccnd缓存中的编码为ccnb格式的<strong>content object</strong></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccndstartcmd.png" alt=""></p>
+<h2 id="ccndstatus"><a href="#ccndstatus" class="headerlink" title="ccndstatus"></a>ccndstatus</h2><p>用于显示ccnd的运行状况，通过浏览器查看<strong><a href="http://localhost:9695" target="_blank" rel="noopener">http://localhost:9695</a></strong>效果相同。使用参数<code>-T[host]</code>可以查看与本节点通过<strong>tcp</strong>可访问的其他节点的ccnd的运行状况</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccndstatus1.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccndstatus2.png" alt=""></p>
+<h2 id="ccndstop"><a href="#ccndstop" class="headerlink" title="ccndstop"></a>ccndstop</h2><p>用于关闭<strong>ccnd</strong></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccndstop.png" alt=""></p>
+<h2 id="ccnexplore"><a href="#ccnexplore" class="headerlink" title="ccnexplore"></a>ccnexplore</h2><p>用于查看存储在<strong>repositories</strong>中的content，能打开<strong>txt</strong>的文本文件，可以通过<code>Save to Repo</code>来将文件存储到repository中，运行时也需要开启<strong>ccnr</strong></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnexplore.png" alt=""></p>
+<h2 id="ccnls"><a href="#ccnls" class="headerlink" title="ccnls"></a>ccnls</h2><p>列出给定<code>prefix</code>下一级的保存在本地ccnd中的所有content object，即逐级查看repo中存储的内容列表</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnls1.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnls2.png" alt=""></p>
+<p><a href="http://ouo0ew9b4.bkt.clouddn.com/ccnls.1.txt" target="_blank" rel="noopener">ccnls Usage: ccnls.1.txt</a></p>
+<h2 id="ccnlsrepo"><a href="#ccnlsrepo" class="headerlink" title="ccnlsrepo"></a>ccnlsrepo</h2><p>列出给定prefix下一级的保存在一个或多个repository中的content，是一个Java程序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Usage</span><br><span class="line">ccnlsrepo [-javaopts &lt;options&gt;] [-debug &lt;portno&gt;] ccnxname [-timeout millis | -c(ontinuous)</span><br></pre></td></tr></table></figure>
+
+<p><a href="http://ouo0ew9b4.bkt.clouddn.com/ccnlsrepo.1.txt" target="_blank" rel="noopener">ccnlsrepo Usage: ccnlsrepo.1.txt</a></p>
+<h2 id="ccnc"><a href="#ccnc" class="headerlink" title="ccnc"></a>ccnc</h2><p>简单的文本聊天程序，对于参与聊天的每台设备都要运行ccnd并且之间的转发规则需要通过<strong>ccndc</strong>手动配置，此处依旧使用了<code>ccnx:/ccnx.org/…</code>的配置</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnc1.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnc2.png" alt=""></p>
+<h2 id="ccnputfile-amp-ccngetfile"><a href="#ccnputfile-amp-ccngetfile" class="headerlink" title="ccnputfile &amp; ccngetfile"></a>ccnputfile &amp; ccngetfile</h2><ul>
+<li>ccngetfile用于取回已发布的CCNx content并将其保存在本地文件中，默认情况下取回的是文件的最新版本，其中参数filename必须是一个本地文件的路径，如果该文件已经存在了，则其需是可以写入或重写的。</li>
+<li>ccnputfile用于发布一个CCNx content</li>
+</ul>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpg1.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpg2.png" alt=""></p>
+<p>并且此时需要在命令行中打开<strong>ccnr</strong>，即使文件的后缀名大小写不同也无法上传</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpg3.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpg4.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpg5.png" alt=""></p>
+<p>同样的方法来取回存在与节点中的内容，指定存储文件路径和名称即可，取回时不需要terminal中打开ccnr</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpg6.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpg7.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpg8.png" alt=""></p>
+<p>当处在IP为149端的进程要执行get操作取回IP为152节点中的内容时，需要使用<strong>ccndc</strong>来配置IP-149节点的路由表，使得在IP-149端的进程发出的<code>interest</code>包能通过路由表传向IP-152的节点来取回数据</p>
+<p>Host2中的配置如下：</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpg9.png" alt=""></p>
+<p>Host2中开启ccnr：</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpg10.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpg11.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpg12.png" alt=""></p>
+<p><a href="http://ouo0ew9b4.bkt.clouddn.com/ccnputfile.1.txt" target="_blank" rel="noopener">ccnputfile Usage: ccnlsrepo.1.txt</a></p>
+<p><a href="http://ouo0ew9b4.bkt.clouddn.com/ccngetfile.1.txt" target="_blank" rel="noopener">ccngetfile Usage: ccnlsrepo.1.txt</a></p>
+<h2 id="ccnputmeta-amp-ccngetmeta"><a href="#ccnputmeta-amp-ccngetmeta" class="headerlink" title="ccnputmeta &amp; ccngetmeta"></a>ccnputmeta &amp; ccngetmeta</h2><p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnputmeta1.png" alt=""></p>
+<p>ccnputmeta将一个文件与CCNx的content关联作为一个元数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ccnputmeta [-javaopts &lt;options&gt;] [-debug &lt;portno&gt;] [-v] [-raw] [-unversioned] [-local | -allownonlocal] [-timeout millis] [-log LEVEL] ccnxname metaname filename|url</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnputmeta2.png" alt=""></p>
+<p>同样该ccnputmeta的操作也需要在terminal中打开ccnr：</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnputmeta3.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnputmeta4.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnputmeta5.png" alt=""></p>
+<p>ccngetmeta将取回关联着CCNx content的元数据将其保存在本地文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ccngetmeta [-javaopts &lt;options&gt;] [-debug &lt;portno&gt;] [-unversioned] [-timeout millis] [-as pathToKeystore] [-ac] ccnxname metaname filename</span><br></pre></td></tr></table></figure>
+
+<p>此方法会取回元数据和对应CCNx content的最新的版本文件，metaname是metadate的相对路径，filename是本地的可写路径</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnputmeta6.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnputmeta7.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnputmeta8.png" alt=""></p>
+<p>类似于一个绑定的过程，通过ccnputmeta将某内容绑定到现存的ccnxname上，并给该内容重新起一个名字叫做metaname，用户通过参数ccnxname、metaname来获取该绑定的内容并可以取回到本地。经过验证可以知道，作为绑定内容meta，此操作并不会增加ccnxname内容的大小，meta该内容是被存储在了repo中，/bin/repoFile1中存储。应该绑定的是一个指针？</p>
+<p><a href="http://ouo0ew9b4.bkt.clouddn.com/ccnputmeta.1.txt" target="_blank" rel="noopener">ccnputmeta Usage: ccnputmeta.1.txt</a></p>
+<h2 id="ccnnamelist"><a href="#ccnnamelist" class="headerlink" title="ccnnamelist"></a>ccnnamelist</h2><p>从ccnb编码数据文件中抽取出所有名字并以标准输出显示（repository）</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnnamelist.png" alt=""></p>
+<p>在没有设置<strong>CCNR_DIRECTORY</strong>的情况下，存储ccnb的repository文件repoFile1默认为当前文件夹下，即<code>/bin</code>下，使用<code>ccnnamelist $CCNR-DIRECTORY/bin/repoFile1</code>可以进行查看</p>
+<p><a href="http://ouo0ew9b4.bkt.clouddn.com/ccnnamelist.1.txt" target="_blank" rel="noopener">ccnnamelist Usage: ccnnamelist.1.txt</a></p>
+<h2 id="ccnrm"><a href="#ccnrm" class="headerlink" title="ccnrm"></a>ccnrm</h2><p>将与参数中给定的prefix匹配的本地缓存中的content object置为过期这使得interest访问它们时不可用，有效的移除了content object，并不产生其他影响。使用参数<strong>-o</strong>可以将置为过期的内容写到输出文件</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnrm1.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnrm2.png" alt=""></p>
+<p>在执行ccnrm操作之前先执行了一次ccngetfile确保内容是可取回的</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnrm3.png" alt=""></p>
+<p>执行完之后再次通过ccngetfile取回文件，eclipse会报错，使用ccnls查看发现repo中已经没有该内容了</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnrm4.png" alt=""></p>
+<h2 id="ccnseqwriter"><a href="#ccnseqwriter" class="headerlink" title="ccnseqwriter"></a>ccnseqwriter</h2><p>创建一个新的ccn content并从标准输入写入数据，使用<strong>-r</strong>参数能将数据保存在repository中<br>输入之后需要使用<strong>CTRL+D</strong>来发送，也可以通过流文件的方式来发送</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnseqwrite.png" alt=""></p>
+<p>Reference <a href="http://ouo0ew9b4.bkt.clouddn.com/ccnseqwriter.1.txt" target="_blank" rel="noopener">ccnseqwriter</a></p>
+<h2 id="ccnsendchunks"><a href="#ccnsendchunks" class="headerlink" title="ccnsendchunks"></a>ccnsendchunks</h2><p>从标准输入中读入数据形成content包，输入之后需要使用<strong>CTRL+D</strong>来发送，与<code>ccnseqwriter</code>类似，也可以使用文件流的方式输入</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnsendchunks.png" alt=""></p>
+<h2 id="ccncatchunks-amp-ccncatchunks2"><a href="#ccncatchunks-amp-ccncatchunks2" class="headerlink" title="ccncatchunks &amp; ccncatchunks2"></a>ccncatchunks &amp; ccncatchunks2</h2><p>对应于<code>ccnsendchunks</code>，读取对应<strong>ccnxname</strong>的内容并输出到标准输出中，也可以使用文件流的方式输出到指定的文件，当以流文件输出时，所确定输出到的文件可以还没有被创建，但是在命令行中必须要指明输出到的文件路径和文件名，系统会自动创建文件</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccncatchunk1.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccncatchunk2.png" alt=""></p>
+<h2 id="ccn-repo"><a href="#ccn-repo" class="headerlink" title="ccn_repo"></a>ccn_repo</h2><p>启动、停止Java应用CCNx repository，但是<strong>已被弃用</strong>，取而代之的是<strong>ccnr</strong></p>
+<h2 id="ccncat"><a href="#ccncat" class="headerlink" title="ccncat"></a>ccncat</h2><p>依据参数中的ccnxname读取CCNx中的内容流并写入到标准输出中，请求的内容需要被事先发布，默认情况下ccncat会取出最新版本的内容</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccncat.png" alt=""></p>
+<h2 id="ccnslurp"><a href="#ccnslurp" class="headerlink" title="ccnslurp"></a>ccnslurp</h2><p>打印出CCNx命名空间指定部分内容的所有名字，<code>ccnslurp [-h] URI</code><br>功能与<code>ccnls</code>类似，都是在命令行中列出内容信息，但<code>ccnslurp</code>是会从当前level开始直接列出所有版本的所有的分块信息，慎用<code>ccnslurp ccnx:/</code>，长期运行停不下来请<strong>CTRL+C</strong>直接停止与ccnnamelist的区别就是ccnslurp加入了条件限定，可以输出部分信息</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnslurp.png" alt=""></p>
+<p>由图中我们能看到对于列出所有版本的所有分块信息，其排列规则不是逐个列出content的所有分块</p>
+<h2 id="ccnchat"><a href="#ccnchat" class="headerlink" title="ccnchat"></a>ccnchat</h2><p>启动或者加入聊天室，<code>ccnchat chatroomname</code>，聊天室的名字需要在前面加入ccnx:/，要运行ccnchat，需要首先通过ccndstart启动ccnd，通过设置<strong>CNN_USER_NAME</strong>和<strong>CCNX_DIR</strong>环境变量可以使得在同一台机器上面运行多个用户姓名不同的ccnchat实体<br>需要两个相互通信的主机上都要配置路由表<br>Host1与host2中只配置了ccnx:/ccnx.org即可实现通信</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnchat1.png" alt=""></p>
+<p>两个主机在运行ccnchat时需要传入同样的ccnxname，此ccnxname是基于ccnx:/ccnx.org的</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnchat2.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnchat3.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnchat4.png" alt=""></p>
+<h2 id="ccnpeek-amp-ccnpoke"><a href="#ccnpeek-amp-ccnpoke" class="headerlink" title="ccnpeek &amp; ccnpoke"></a>ccnpeek &amp; ccnpoke</h2><ul>
+<li>ccnpeek用于产生一个兴趣包，从而获得一个与名称前缀相匹配的内容并将其写入到标准输出中来。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ccnpeek [-h] [-a] [-c] [-l lifetime] [-s scope] [-u] [-v] [-w timeout] ccnxuri</span><br></pre></td></tr></table></figure>
+
+<p>Reference <a href="http://ouo0ew9b4.bkt.clouddn.com/ccnpeek.1.txt" target="_blank" rel="noopener">ccnpeek</a></p>
+<ul>
+<li>ccnpoke从标准输入中读入数据并将它作为单条content object响应interest包。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ccnpoke [-hflv] [-k keyuri] [-p n] [-t type] [-V seg] [-w timeout] [-x freshness] ccnxuri</span><br></pre></td></tr></table></figure>
+
+<p>Reference <a href="http://ouo0ew9b4.bkt.clouddn.com/ccnpoke.1.txt" target="_blank" rel="noopener">ccnpoke</a></p>
+<p>ccnpeek与ccnpoke的功能类似于<strong>TCP</strong>中的client与server，二者在运行时首先要运行ccnpeek向节点ccnd发出对ccnuri的请求，默认等待时间为3秒，等待不到就会自动丢弃，因此要在此时间内使用ccnpoke发送响应该interest请求的内容，内容一方面会使ccnpeek得到并输出在stdout中，另一方面也会保存在repo中</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpp1.png" alt=""></p>
+<p>在一个terminal终端中，输入数据之后，需要使用<strong>CTRL+D</strong>来发送信息，此时在另外terminal端使用ccnpeek发送对此uri的interest请求时才会得到相应的内容</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpp2.png" alt=""></p>
+<p>使用<strong>CTRL+D</strong>发送数据之后也会处于此阻塞等待状态，直到有interest兴趣包来将此内容取回之后才会退出该状态，或者也可以使用参数-f来将内容事先保存在repo中而忽略兴趣包的请求，使得兴趣包的请求可以在之后其他时间进行</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnpp3.png" alt=""></p>
+<h2 id="ccnr"><a href="#ccnr" class="headerlink" title="ccnr"></a>ccnr</h2><p>CCNx repository<br>ccnr命令通过<strong>CCNR_DIRECTORY</strong>环境变量所指定的目录启动Repository，默认情况下<strong>CCNR_DIRECTORY</strong>是当前目录。启动时，repository取回并使用如下配置选项。被<strong>CCNR_DIRECTORY</strong>所命名的目录名字必须事先存在，当ccnd关闭时ccnr也会随之关闭，在同一个后台存储目录下同一时间不能运行两个repository。CCN中永久性的content object存储在ccnr目录之下的repoFile1文件中，可以使用<code>ccnnamelist $CCNR_DIRECTORY/repoFile1</code>来查看存储到其中的内容列表，一个驻留在磁盘中index文件有利于快速启动并且缓解了内存的占用，如果index索引文件不存在的话，在ccnr启动阶段会被建立。<strong>$CCNR_DIRECTORY/config</strong>配置文件在启动时会被读取，并且配置文件中的变量优先级高于环境变量中的值</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnr1.png" alt=""></p>
+<p>CTRL+C关闭ccnr但不关闭ccnd的情况下再次输入打开ccnr</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnr2.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnr3.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnr4.png" alt=""></p>
+<p>Reference <a href="http://ouo0ew9b4.bkt.clouddn.com/ccnr.1.txt" target="_blank" rel="noopener">ccnr</a></p>
+<h2 id="ccnrpolicyedit"><a href="#ccnrpolicyedit" class="headerlink" title="ccnrpolicyedit"></a>ccnrpolicyedit</h2><p>用于编辑policy.xml文件，由于该真实的repository策略文件是保存在repo自身的且被编码成了ccnb格式的，使用常规的文本编辑器是无法对其进行编辑的，使用ccnrpolicyedit能够将ccnb策略文件转化为临时的基于文本的xml文件，使用文本编辑器进行处理，然后再将其转码为ccnb，并对repo中的策略文件进行更新</p>
+<p>Reference <a href="http://ouo0ew9b4.bkt.clouddn.com/ccnrpolicyedit.1.txt" target="_blank" rel="noopener">ccnrpolicyedit</a></p>
+<h2 id="ccnsyncslice"><a href="#ccnsyncslice" class="headerlink" title="ccnsyncslice"></a>ccnsyncslice</h2><p>操作同步配置片</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnsyncslice.png" alt=""></p>
+<p>Reference <a href="http://ouo0ew9b4.bkt.clouddn.com/ccnsyncslice.1.txt" target="_blank" rel="noopener">ccnsyncslice</a></p>
+<h2 id="ccnsyncwatch"><a href="#ccnsyncwatch" class="headerlink" title="ccnsyncwatch"></a>ccnsyncwatch</h2><p>查看同步操作并报告新content object</p>
+<p>Reference <a href="http://ouo0ew9b4.bkt.clouddn.com/ccnsyncwatch.1.txt" target="_blank" rel="noopener">ccnsyncwatch</a></p>
+<h2 id="ccnlink"><a href="#ccnlink" class="headerlink" title="ccnlink"></a>ccnlink</h2><p>创建一个新的uri指向目标uri，存储在了repository中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ccnlink [-q] [-r] linkURI linkTargetURI [-as pathToKeystore ]</span><br></pre></td></tr></table></figure>
+
+<p>同一个ccnxname多了一个名字</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnlink1.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnlink2.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnlink3.png" alt=""></p>
+<h2 id="ccnprintlink"><a href="#ccnprintlink" class="headerlink" title="ccnprintlink"></a>ccnprintlink</h2><p>打印特定连接的相关信息，除非命名的内容块不存在或者不是一个link<br>必须在参数中加入-q，否则需要输入两个ccnlink</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnprintlink1.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnprintlink2.png" alt=""></p>
+<h2 id="ccntestloop"><a href="#ccntestloop" class="headerlink" title="ccntestloop"></a>ccntestloop</h2><p>重复运行CCNx单元测试</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccntestloop.png" alt=""></p>
+</div><div class="tags"><a href="/tags/CCN/">CCN</a><a href="/tags/CCNx/">CCNx</a></div><div class="post-nav"><a class="pre" href="/2018/07/26/LaTeX%E5%90%84%E7%B1%BB%E8%B7%9D%E7%A6%BB%E7%9A%84%E8%B0%83%E8%8A%82/">LaTeX各类距离的调节</a><a class="next" href="/2017/09/15/Caffe%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E9%97%AE%E9%A2%98%E6%B1%87%E6%80%BB/">Caffe安装过程问题汇总</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'http://yoursite.com/2017/09/19/CCNx命令解析/';
+    this.page.identifier = '2017/09/19/CCNx命令解析/';
+    this.page.title = 'CCNx命令解析';
+  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
+url: 'https://disqus.com/next/config.json',
+timeout: 2500,
+type: 'GET',
+success: function(){
+  var d = document;
+  var s = d.createElement('script');
+  s.src = '//renpei## Your disqus_shortname, e.g. username.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', + new Date());
+  (d.head || d.body).appendChild(s);
+  $('.disqus_click_btn').css('display', 'none');
+},
+error: function() {
+  $('.disqus_click_btn').css('display', 'block');
+}
+});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//renpei## Your disqus_shortname, e.g. username.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://renpei## Your disqus_shortname, e.g. username.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CCN/">CCN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Caffe/">Caffe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Chainer/">Chainer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Vision/">Computer Vision</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GitLab/">GitLab</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LaTeX/">LaTeX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NDN/">NDN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/CCN/" style="font-size: 15px;">CCN</a> <a href="/tags/CCNx/" style="font-size: 15px;">CCNx</a> <a href="/tags/Chainer/" style="font-size: 15px;">Chainer</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/Server/" style="font-size: 15px;">Server</a> <a href="/tags/LaTeX/" style="font-size: 15px;">LaTeX</a> <a href="/tags/GitLab/" style="font-size: 15px;">GitLab</a> <a href="/tags/OpenCV/" style="font-size: 15px;">OpenCV</a> <a href="/tags/Computer-Vision/" style="font-size: 15px;">Computer Vision</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/NDN/" style="font-size: 15px;">NDN</a> <a href="/tags/ndnSIM/" style="font-size: 15px;">ndnSIM</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/BUPT/" style="font-size: 15px;">BUPT</a> <a href="/tags/Caffe/" style="font-size: 15px;">Caffe</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">Lean In.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>

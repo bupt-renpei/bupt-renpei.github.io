@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>CCNx下多节点间通信（一）文件互传 | Lean In</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="generator" content="Hexo 4.1.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">CCNx下多节点间通信（一）文件互传</h1><a id="logo" href="/.">Lean In</a><p class="description"></p></div><div id="nav-menu"><a href="/topic/"><i class="fa fa-map-marker"> Topic</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/reading/"><i class="fa fa-university"> Reading</i></a><a href="/travel/"><i class="fa fa-plane"> Travel</i></a><a href="/publication/"><i class="fa fa-file-text-o"> Publication</i></a><a href="/about/"><i class="fa fa-user"> About</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">CCNx下多节点间通信（一）文件互传</h1><div class="post-meta">Aug 20, 2017<span> | </span><span class="category"><a href="/categories/CCN/">CCN</a></span></div><a class="disqus-comment-count" data-disqus-identifier="2017/08/20/CCNx下多节点间通信（一）文件互传/" href="/2017/08/20/CCNx%E4%B8%8B%E5%A4%9A%E8%8A%82%E7%82%B9%E9%97%B4%E9%80%9A%E4%BF%A1%EF%BC%88%E4%B8%80%EF%BC%89%E6%96%87%E4%BB%B6%E4%BA%92%E4%BC%A0/#disqus_thread"></a><div class="post-content"><a id="more"></a>
+
+<h2 id="Environment-Setting"><a href="#Environment-Setting" class="headerlink" title="Environment Setting"></a>Environment Setting</h2><p>实验场景如图所示，3台虚拟机分别运行CCNx协议，Server Node存放Client Node所请求的文件</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnxES.png" alt=""></p>
+<p>在执行以下操作之前，每个Node都需要首先通过<code>ccnd</code>和<code>ccnr</code>命令启动CCN协议与repo</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnd.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnr.png" alt=""></p>
+<p>其次还需要确保上述节点之间相互可以ping通</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ping123.png" alt=""></p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ping23.png" alt=""></p>
+<h2 id="CCNx-Node1-Server"><a href="#CCNx-Node1-Server" class="headerlink" title="CCNx Node1 (Server)"></a>CCNx Node1 (Server)</h2><p>在Server Node中主要通过CCNx<code>ccnputfile</code>命令上传文件到本地repo</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnputfile.png" alt=""></p>
+<p>点击<strong>Run</strong>之后，Console选项卡显示Insert文件成功的信息</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnputfilelogNode1.png" alt=""></p>
+<p>文件上传成功后，可以通过<code>ccnls</code>命令查询repo中存储的文件</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccnls.png" alt=""></p>
+<h2 id="CCNx-Node2-Router"><a href="#CCNx-Node2-Router" class="headerlink" title="CCNx Node2 (Router)"></a>CCNx Node2 (Router)</h2><p>CCNx Node2作为路由节点，需要将CCNx Node3 (Client)节点发出的请求转发到CCNx Node1来进行响应，所以CCNx Node2需要通过<code>ccndc add</code>命令来添加请求的路由信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ccndc add ccnx:&#x2F;server udp 192.168.136.142</span><br><span class="line">ccndc add ccnx:&#x2F;ccnx.org udp 192.168.136.142</span><br></pre></td></tr></table></figure>
+
+<p>这条命令表明，所有prefix为<strong>ccnx:/server</strong>的Interest packet都会被当前的Router节点路由到IP地址为<strong>192.168.136.142</strong>的节点</p>
+<h2 id="CCNx-Node3-Client"><a href="#CCNx-Node3-Client" class="headerlink" title="CCNx Node3 (Client)"></a>CCNx Node3 (Client)</h2><p>同样的CCNx Node3节点也需要设置路由信息，将当前节点的请求路由到CCNx Node2路由器节点，在请求文件的Node一侧，<code>ccnr</code>不是必须要启动的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ccndc add ccnx:&#x2F;server udp 192.168.136.143</span><br><span class="line">ccndc add ccnx:&#x2F;ccnx.org udp 192.168.136.143</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccngetfile.png" alt=""></p>
+<p>当文件取回成功之后，同样会在Eclipse的Console选项卡中显示log信息</p>
+<p><img src="http://ouo0ew9b4.bkt.clouddn.com/ccngetfilelogNode3.png" alt=""></p>
+</div><div class="tags"><a href="/tags/CCN/">CCN</a><a href="/tags/CCNx/">CCNx</a></div><div class="post-nav"><a class="pre" href="/2017/08/21/CCNx%E4%B8%8B%E5%A4%9A%E8%8A%82%E7%82%B9%E9%97%B4%E9%80%9A%E4%BF%A1%EF%BC%88%E4%BA%8C%EF%BC%89CCNChat/">CCNx下多节点间通信（二）CCNChat</a><a class="next" href="/2017/08/20/Ubuntu16-04%E4%B8%8BCCNx0-8-2%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">Ubuntu16.04下CCNx0.8.2安装教程</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
+    this.page.url = 'http://yoursite.com/2017/08/20/CCNx下多节点间通信（一）文件互传/';
+    this.page.identifier = '2017/08/20/CCNx下多节点间通信（一）文件互传/';
+    this.page.title = 'CCNx下多节点间通信（一）文件互传';
+  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
+url: 'https://disqus.com/next/config.json',
+timeout: 2500,
+type: 'GET',
+success: function(){
+  var d = document;
+  var s = d.createElement('script');
+  s.src = '//renpei## Your disqus_shortname, e.g. username.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', + new Date());
+  (d.head || d.body).appendChild(s);
+  $('.disqus_click_btn').css('display', 'none');
+},
+error: function() {
+  $('.disqus_click_btn').css('display', 'block');
+}
+});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
+    (() => { // DON'T EDIT BELOW THIS LINE
+        var d = document;
+        var s = d.createElement('script');
+        s.src = '//renpei## Your disqus_shortname, e.g. username.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', + new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    $('.disqus_click_btn').css('display','none');
+});</script><script type="text/javascript" id="disqus-count-script">$(function() {
+     var xhr = new XMLHttpRequest();
+     xhr.open('GET', '//disqus.com/next/config.json', true);
+     xhr.timeout = 2500;
+     xhr.onreadystatechange = function () {
+       if (xhr.readyState === 4 && xhr.status === 200) {
+         $('.post-meta .post-comments-count').show();
+         var s = document.createElement('script');
+         s.id = 'dsq-count-scr';
+         s.src = 'https://renpei## Your disqus_shortname, e.g. username.disqus.com/count.js';
+         s.async = true;
+         (document.head || document.body).appendChild(s);
+       }
+     };
+     xhr.ontimeout = function () { xhr.abort(); };
+     xhr.send(null);
+   });
+</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CCN/">CCN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Caffe/">Caffe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Chainer/">Chainer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Vision/">Computer Vision</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GitLab/">GitLab</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LaTeX/">LaTeX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NDN/">NDN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/CCN/" style="font-size: 15px;">CCN</a> <a href="/tags/CCNx/" style="font-size: 15px;">CCNx</a> <a href="/tags/Chainer/" style="font-size: 15px;">Chainer</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/Server/" style="font-size: 15px;">Server</a> <a href="/tags/LaTeX/" style="font-size: 15px;">LaTeX</a> <a href="/tags/GitLab/" style="font-size: 15px;">GitLab</a> <a href="/tags/OpenCV/" style="font-size: 15px;">OpenCV</a> <a href="/tags/Computer-Vision/" style="font-size: 15px;">Computer Vision</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/NDN/" style="font-size: 15px;">NDN</a> <a href="/tags/ndnSIM/" style="font-size: 15px;">ndnSIM</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/BUPT/" style="font-size: 15px;">BUPT</a> <a href="/tags/Caffe/" style="font-size: 15px;">Caffe</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">Lean In.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
