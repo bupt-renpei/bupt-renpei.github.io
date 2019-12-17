@@ -1,20 +1,77 @@
-<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content=""><title>Lean In</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask="" sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><meta name="generator" content="Hexo 4.1.1"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Lean In</h1><a id="logo" href="/.">Lean In</a><p class="description"></p></div><div id="nav-menu"><a href="/topic/"><i class="fa fa-map-marker"> Topic</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/reading/"><i class="fa fa-university"> Reading</i></a><a href="/travel/"><i class="fa fa-plane"> Travel</i></a><a href="/publication/"><i class="fa fa-file-text-o"> Publication</i></a><a href="/about/"><i class="fa fa-user"> About</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"><a href="/2019/03/18/Ubuntu-16-04%E5%AE%89%E8%A3%85gym/">Ubuntu 16.04安装gym</a></h1><div class="post-meta">2019-03-18</div><a class="disqus-comment-count" data-disqus-identifier="2019/03/18/Ubuntu-16-04安装gym/" href="/2019/03/18/Ubuntu-16-04%E5%AE%89%E8%A3%85gym/#disqus_thread"></a><div class="post-content"><p>apt-get install git vim cmake<br>apt-get install -y python-numpy python-dev cmake zlib1g-dev libjpeg-dev xvfb libav-tools xorg-dev python-opengl libboost-all-dev libsdl2-dev swig<br>git clone <a href="https://github.com/openai/mujoco-py.git" target="_blank" rel="noopener">https://github.com/openai/mujoco-py.git</a><br>python3 setup.py install<br>git clone <a href="https://github.com/openai/gym.git" target="_blank" rel="noopener">https://github.com/openai/gym.git</a><br>cd gym<br>pip install -e ‘.[all]’<br>pip install –upgrade setuptools<br>pip install numpy Matplotlib<br>pip install opencv-python<br>vim ~/.bashrc<br>export PYTHONPATH=”/home/gym:$PYTHONPATH”<br>source ~/.bashrc<br>import gym<br>import tensorflow<br>env=gym.make(‘CartPole-v0’)<br>env.reset()</p></div><p class="readmore"><a href="/2019/03/18/Ubuntu-16-04%E5%AE%89%E8%A3%85gym/">Read More</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/01/02/%E5%90%84%E7%B1%BB%E6%9C%9F%E5%88%8A-%E4%BC%9A%E8%AE%AE%E5%AE%A1%E7%A8%BF%E6%A0%87%E5%87%86/">各类期刊/会议审稿标准</a></h1><div class="post-meta">2019-01-02</div><a class="disqus-comment-count" data-disqus-identifier="2019/01/02/各类期刊-会议审稿标准/" href="/2019/01/02/%E5%90%84%E7%B1%BB%E6%9C%9F%E5%88%8A-%E4%BC%9A%E8%AE%AE%E5%AE%A1%E7%A8%BF%E6%A0%87%E5%87%86/#disqus_thread"></a><div class="post-content"><a id="more"></a>
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
 
-<h2 id="Proceedings-of-the-IEEE"><a href="#Proceedings-of-the-IEEE" class="headerlink" title="Proceedings of the IEEE"></a>Proceedings of the IEEE</h2><h2 id="IEEE-Communications-Magazine"><a href="#IEEE-Communications-Magazine" class="headerlink" title="IEEE Communications Magazine"></a>IEEE Communications Magazine</h2><h2 id="Journal-of-Network-and-Computer-Applications"><a href="#Journal-of-Network-and-Computer-Applications" class="headerlink" title="Journal of Network and Computer Applications"></a>Journal of Network and Computer Applications</h2><h2 id="IEEE-Internet-of-Things-Journal"><a href="#IEEE-Internet-of-Things-Journal" class="headerlink" title="IEEE Internet of Things Journal"></a>IEEE Internet of Things Journal</h2><h2 id="WWW"><a href="#WWW" class="headerlink" title="WWW"></a>WWW</h2><h2 id="Transactions-on-Services-Computing"><a href="#Transactions-on-Services-Computing" class="headerlink" title="Transactions on Services Computing"></a>Transactions on Services Computing</h2><p>(IEEE Transactions on Services Computing Review Form)</p></div><p class="readmore"><a href="/2019/01/02/%E5%90%84%E7%B1%BB%E6%9C%9F%E5%88%8A-%E4%BC%9A%E8%AE%AE%E5%AE%A1%E7%A8%BF%E6%A0%87%E5%87%86/">Read More</a></p></div><div class="post"><h1 class="post-title"><a href="/2018/12/22/Chainer-1-24-0-GPU%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Chainer 1.24.0 GPU环境搭建</a></h1><div class="post-meta">2018-12-22</div><a class="disqus-comment-count" data-disqus-identifier="2018/12/22/Chainer-1-24-0-GPU环境搭建/" href="/2018/12/22/Chainer-1-24-0-GPU%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/#disqus_thread"></a><div class="post-content"><a id="more"></a>
+<!--- basic page needs
+================================================== -->
+<meta charset="utf-8">
+<title>Hello World.</title>
 
-<h2 id="拉取Nvidia-Docker镜像"><a href="#拉取Nvidia-Docker镜像" class="headerlink" title="拉取Nvidia Docker镜像"></a>拉取Nvidia Docker镜像</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nvidia&#x2F;cuda:8.0-cudnn6-devel</span><br></pre></td></tr></table></figure></div><p class="readmore"><a href="/2018/12/22/Chainer-1-24-0-GPU%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">Read More</a></p></div><div class="post"><h1 class="post-title"><a href="/2018/11/24/Docker%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">Docker的安装和使用</a></h1><div class="post-meta">2018-11-24</div><a class="disqus-comment-count" data-disqus-identifier="2018/11/24/Docker的安装和使用/" href="/2018/11/24/Docker%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/#disqus_thread"></a><div class="post-content"><a id="more"></a>
 
-<h2 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h2><p>Docker支持情况：<code>https://docs.docker.com/install/</code><br>Docker CE安装：<code>https://docs.docker.com/install/linux/docker-ce/ubuntu/</code><br>安装Docker：</p></div><p class="readmore"><a href="/2018/11/24/Docker%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">Read More</a></p></div><div class="post"><h1 class="post-title"><a href="/2018/11/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Linux常用命令</a></h1><div class="post-meta">2018-11-15</div><a class="disqus-comment-count" data-disqus-identifier="2018/11/15/Linux常用命令/" href="/2018/11/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/#disqus_thread"></a><div class="post-content"><a id="more"></a>
+<!-- mobile specific metas
+================================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-<h2 id="scp"><a href="#scp" class="headerlink" title="scp"></a>scp</h2><h4 id="文件复制：本机-gt-远程服务器："><a href="#文件复制：本机-gt-远程服务器：" class="headerlink" title="文件复制：本机-&gt;远程服务器："></a>文件复制：本机-&gt;远程服务器：</h4><p>scp /home/shaoxiaohu/test1.txt <a href="mailto:shaoxiaohu@172.16.18.1">shaoxiaohu@172.16.18.1</a>:/home/test2.txt<br>其中，test1为源文件，test2为目标文件，<a href="mailto:shaoxiaohu@172.16.18.1">shaoxiaohu@172.16.18.1</a>为远程服务器的用户名和ip地址</p></div><p class="readmore"><a href="/2018/11/15/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Read More</a></p></div><div class="post"><h1 class="post-title"><a href="/2018/09/06/BUPT%E7%A0%94%E7%A9%B6%E7%94%9F%E5%87%BA%E5%9B%BD%E7%94%B3%E8%AF%B7%E6%B5%81%E7%A8%8B%E5%A4%87%E6%B3%A8/">BUPT研究生出国申请流程备注</a></h1><div class="post-meta">2018-09-06</div><a class="disqus-comment-count" data-disqus-identifier="2018/09/06/BUPT研究生出国申请流程备注/" href="/2018/09/06/BUPT%E7%A0%94%E7%A9%B6%E7%94%9F%E5%87%BA%E5%9B%BD%E7%94%B3%E8%AF%B7%E6%B5%81%E7%A8%8B%E5%A4%87%E6%B3%A8/#disqus_thread"></a><div class="post-content"><p>地区：美国/华盛顿州<br>时间：2018/10/24-2018/10/29<br>签证申请时间：2018/09/05<br>预约面签时间：2018/09/11</p>
-<p>CHECK</p>
-<p>Case Created: 10-Sep-2018</p>
-<p>Case First Updated: 11-Sep-2018</p></div><p class="readmore"><a href="/2018/09/06/BUPT%E7%A0%94%E7%A9%B6%E7%94%9F%E5%87%BA%E5%9B%BD%E7%94%B3%E8%AF%B7%E6%B5%81%E7%A8%8B%E5%A4%87%E6%B3%A8/">Read More</a></p></div><div class="post"><h1 class="post-title"><a href="/2018/08/12/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E7%BC%96%E8%BE%91%E4%B8%8E%E8%A7%84%E8%8C%83/">数学公式的编辑与规范</a></h1><div class="post-meta">2018-08-12</div><a class="disqus-comment-count" data-disqus-identifier="2018/08/12/数学公式的编辑与规范/" href="/2018/08/12/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E7%BC%96%E8%BE%91%E4%B8%8E%E8%A7%84%E8%8C%83/#disqus_thread"></a><div class="post-content"><a id="more"></a>
+<!-- CSS
+================================================== -->
+<link rel="stylesheet" href="css/base.css">  
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/vendor.css">     
 
-<ul>
-<li><strong>数学符号要统一</strong></li>
-<li>变量与函数 （数学公式=变量+函数+运算符+关系符）<ul></div><p class="readmore"><a href="/2018/08/12/%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E7%BC%96%E8%BE%91%E4%B8%8E%E8%A7%84%E8%8C%83/">Read More</a></p></div><div class="post"><h1 class="post-title"><a href="/2018/08/02/IBM-x3650-M4%E5%AE%89%E8%A3%85Win-Srv-2K8-R2/">IBM x3650 M4安装Win. Srv. 2K8 R2</a></h1><div class="post-meta">2018-08-02</div><a class="disqus-comment-count" data-disqus-identifier="2018/08/02/IBM-x3650-M4安装Win-Srv-2K8-R2/" href="/2018/08/02/IBM-x3650-M4%E5%AE%89%E8%A3%85Win-Srv-2K8-R2/#disqus_thread"></a><div class="post-content"><p>(Reference: From Lenovo)[<a href="http://iknow.lenovo.com/detail/dc_154478.html]" target="_blank" rel="noopener">http://iknow.lenovo.com/detail/dc_154478.html]</a></p></div><p class="readmore"><a href="/2018/08/02/IBM-x3650-M4%E5%AE%89%E8%A3%85Win-Srv-2K8-R2/">Read More</a></p></div><div class="post"><h1 class="post-title"><a href="/2018/07/26/LaTeX%E5%90%84%E7%B1%BB%E8%B7%9D%E7%A6%BB%E7%9A%84%E8%B0%83%E8%8A%82/">LaTeX各类距离的调节</a></h1><div class="post-meta">2018-07-26</div><a class="disqus-comment-count" data-disqus-identifier="2018/07/26/LaTeX各类距离的调节/" href="/2018/07/26/LaTeX%E5%90%84%E7%B1%BB%E8%B7%9D%E7%A6%BB%E7%9A%84%E8%B0%83%E8%8A%82/#disqus_thread"></a><div class="post-content"><a id="more"></a>
+<!-- script
+================================================== -->   
+<script src="js/modernizr.js"></script>
+<script src="js/pace.min.js"></script>
 
-<h2 id="作者信息-正文-IEEEtran-cls"><a href="#作者信息-正文-IEEEtran-cls" class="headerlink" title="作者信息-正文 (IEEEtran.cls)"></a>作者信息-正文 (IEEEtran.cls)</h2><p><img src="http://ouo0ew9b4.bkt.clouddn.com/DistanceLaTeX-1.jpg" alt=""></p></div><p class="readmore"><a href="/2018/07/26/LaTeX%E5%90%84%E7%B1%BB%E8%B7%9D%E7%A6%BB%E7%9A%84%E8%B0%83%E8%8A%82/">Read More</a></p></div><div class="post"><h1 class="post-title"><a href="/2017/09/19/CCNx%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90/">CCNx命令解析</a></h1><div class="post-meta">2017-09-19</div><a class="disqus-comment-count" data-disqus-identifier="2017/09/19/CCNx命令解析/" href="/2017/09/19/CCNx%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90/#disqus_thread"></a><div class="post-content"><a id="more"></a>
+<!-- favicons
+================================================== -->
+<link rel="icon" type="image/png" href="favicon.png">
 
-<h2 id="ccn-xmltoccnb-amp-ccn-ccnbtoxml"><a href="#ccn-xmltoccnb-amp-ccn-ccnbtoxml" class="headerlink" title="ccn_xmltoccnb &amp; ccn_ccnbtoxml"></a>ccn_xmltoccnb &amp; ccn_ccnbtoxml</h2><p>在XML文件与二进制编码的CCN数据<strong>（ccnb）</strong>之间进行转换</p></div><p class="readmore"><a href="/2017/09/19/CCNx%E5%91%BD%E4%BB%A4%E8%A7%A3%E6%9E%90/">Read More</a></p></div><nav class="page-navigator"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next</a></nav><script id="dsq-count-scr" src="//renpei## Your disqus_shortname, e.g. username.disqus.com/count.js" async></script></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CCN/">CCN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Caffe/">Caffe</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Chainer/">Chainer</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Computer-Vision/">Computer Vision</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/GitLab/">GitLab</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hexo/">Hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/LaTeX/">LaTeX</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NDN/">NDN</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Server/">Server</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/CCN/" style="font-size: 15px;">CCN</a> <a href="/tags/CCNx/" style="font-size: 15px;">CCNx</a> <a href="/tags/Chainer/" style="font-size: 15px;">Chainer</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/Server/" style="font-size: 15px;">Server</a> <a href="/tags/LaTeX/" style="font-size: 15px;">LaTeX</a> <a href="/tags/GitLab/" style="font-size: 15px;">GitLab</a> <a href="/tags/OpenCV/" style="font-size: 15px;">OpenCV</a> <a href="/tags/Computer-Vision/" style="font-size: 15px;">Computer Vision</a> <a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/NDN/" style="font-size: 15px;">NDN</a> <a href="/tags/ndnSIM/" style="font-size: 15px;">ndnSIM</a> <a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/BUPT/" style="font-size: 15px;">BUPT</a> <a href="/tags/Caffe/" style="font-size: 15px;">Caffe</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Links</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">Lean In.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+</head>
+
+<body id="top">
+
+<!-- intro section
+================================================== -->
+<section id="intro">   
+
+<div class="intro-overlay"></div>	
+
+<div class="intro-content">
+	<div class="row">
+
+		<div class="col-twelve">
+
+			<h5>Hello, World.</h5>
+			<h1>I am who I am.</h1>
+
+			<p class="intro-position">
+				<span>Curiosity</span>
+				<span>Curiosity</span>
+				<span>Curiosity</span>
+			</p>
+
+			<a href="http://renpei.net/topic/" title=""><p class="intro-position">Enter<p></a>
+
+		</div>  
+		
+	</div>   		 		
+</div> <!-- /intro-content --> 
+
+<ul class="intro-social">
+	 <li><a href="#"><i class="fa fa-hubspot"></i></a></li>
+
+</ul> <!-- /intro-social -->      	
+
+</section> <!-- /intro -->
+
+<!-- Java Script
+================================================== --> 
+<script src="js/jquery-2.1.3.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
